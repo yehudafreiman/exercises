@@ -1,43 +1,52 @@
 import game
 from dice_game.utils import roll_two_dices
-from dice_game.game import manage_turns, manage_scores, decision_selected
+from dice_game.game import manage_turns, decision_selected
 
 
 def play_game():
+    p1_score = 0
+    p2_score = 0
 
     # Start
     print("* Start game *")
 
-    # Turn
-    current_player = manage_turns()
-    print(f"--- Player turn: {current_player} ---")
+    run = True
+    while run:
 
-    # Score
-    if current_player == "1":
-        print(f"Your score: {manage_scores("1")} points, rival score: {manage_scores("2")} points")
-    else:
-        print(f"Your score: {manage_scores("2")} points, rival score: {manage_scores("1")} points")
+        # Turn
+        current_player = manage_turns()
+        print(f"- Player turn: {current_player} -")
 
-    # Decision
-    decision = decision_selected()
+        # Score
+        if current_player == "1":
+            print(f"Your score: {p1_score} points, rival score: {p2_score} points")
+        else:
+            print(f"Your score: {p2_score} points, rival score: {p1_score} points")
 
-    # Rolling
-    if decision == "r":
-        rolling = roll_two_dices()
-        print(f"Result of roll: {rolling[0]} & {rolling[1]} >> Total: {rolling[2]} points")
+        # Decision
+        decision = decision_selected()
 
-        # Update
-        updated_score = manage_scores(current_player)
-        updated_score += rolling[2]
+        # Rolling
+        if decision == "r":
+            rolling = roll_two_dices()
+            print(f"Result of roll: {rolling[0]} & {rolling[1]} >> Total: {rolling[2]} points")
 
+            # Update
+            if current_player == "1":
+                p1_score += rolling[2]
+                print(f"Your score now: {p1_score} points")
+            else:
+                p2_score += rolling[2]
+                print(f"Your score now: {p2_score} points")
 
-    # Passing
-    # if decision == "p":
-    #     passing = manage_turns()
+        # Passing
+        # if decision == "p":
+        #     passing = manage_turns()
 
     # End
-    # if current_player == '0':
-    #     exit("* End game *")
+    # if game.manage_turns == '0':
+    #     print("* End game *")
+    #     exit()
 
 play_game()
 
