@@ -1,20 +1,55 @@
-def scores():
-    player_scores = {
-        'player 1': 0,
-        'player 2': 0
-    }
-    for player, score in player_scores.items():
-        print(f"{player}: {score}")
+import game
+from dice_game.utils import roll_two_dices
+from dice_game.game import manage_turns, manage_scores, decision_selected
 
-def roll_two_dices():
-    import random
-    dice_1 = random.randint(1,6)
-    dice_2 = random.randint(1, 6)
-    total = dice_1 + dice_2
-    return f'{dice_1}, {dice_2}, total: {total}'
 
 def play_game():
-    pass
+
+    # Start
+    print("* Start game *")
+
+    # Turn
+    current_player = manage_turns()
+    print(f"--- Player turn: {current_player} ---")
+
+    # Score
+    if current_player == "1":
+        print(f"Your score: {manage_scores("1")} points, rival score: {manage_scores("2")} points")
+    else:
+        print(f"Your score: {manage_scores("2")} points, rival score: {manage_scores("1")} points")
+
+    # Decision
+    decision = decision_selected()
+
+    # Rolling
+    if decision == "r":
+        rolling = roll_two_dices()
+        print(f"Result of roll: {rolling[0]} & {rolling[1]} >> Total: {rolling[2]} points")
+
+        # Update
+        updated_score = manage_scores(current_player)
+        updated_score += rolling[2]
+
+
+    # Passing
+    # if decision == "p":
+    #     passing = manage_turns()
+
+    # End
+    # if current_player == '0':
+    #     exit("* End game *")
+
+play_game()
+
+
+
+
+
+
+
+
+
+
 
 def is_target(score:int):
     pass
@@ -27,16 +62,6 @@ def closer_to_target():
 
 def tie_breaker(roller):
     pass
-
-def turn_decision(player):
-    is_running = True
-    while is_running:
-        decision = input("choose 'roll' or 'pass': ")
-        if decision == 'roll':
-            roll_two_dices()
-        else:
-            player_1_turn = False
-
 
 def display():
     pass
