@@ -1,7 +1,8 @@
 import words, game, main
 
 def prompt_guess():
-    return
+    ch = input("enter one letter: ")
+    return ch
 
 def print_status(state: dict):
     return None
