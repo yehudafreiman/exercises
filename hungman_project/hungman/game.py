@@ -1,5 +1,5 @@
-import main
-from hungman import io, words
+from hungman_project import main
+from hungman_project import hungman
 
 def init_state(secret, max_tries = 10):
     stat_game = {"secret": secret,
@@ -9,6 +9,7 @@ def init_state(secret, max_tries = 10):
             "max_tries": max_tries
     }
     return stat_game
+
 
 def validate_guess(ch: str, guesses: set[str]):
     if isinstance(ch, str) and len(ch) == 1:

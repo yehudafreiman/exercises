@@ -1,4 +1,4 @@
-import words, game, main
+import words, game
 
 def prompt_guess():
     ch = input("enter one letter: ")
