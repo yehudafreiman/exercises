@@ -1,3 +1,5 @@
+import words, game, main
+
 def prompt_guess():
     return
 

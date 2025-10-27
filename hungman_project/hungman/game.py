@@ -1,5 +1,12 @@
-def init_state(secret: str, max_tries: int):
-    return
+import io, words, main
+
+def init_state(secret, max_tries = 10):
+    return {"secret": secret,
+            "display": [],
+            "guesses": (),
+            "wrong_guesses": 0,
+            "max_tries": max_tries
+    }
 
 def validate_guess(ch: str, guessed: set[str]):
     return
