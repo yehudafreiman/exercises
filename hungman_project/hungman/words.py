@@ -19,4 +19,3 @@ words = ["בננה", "תפוח", "חציל", "עגבניה", "מלפפון", "מ
 
 def choose_secret_word(words_list:list):
     return random.choice(words_list)
-print(choose_secret_word(words))

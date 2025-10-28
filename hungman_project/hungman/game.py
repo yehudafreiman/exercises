@@ -3,7 +3,7 @@ from hungman_project import hungman
 
 def init_state(secret, max_tries):
     state_game = {"secret": secret,
-            "display": [],
+            "display": '',
             "guesses": (),
             "wrong_guesses": 0,
             "max_tries": max_tries
@@ -11,10 +11,16 @@ def init_state(secret, max_tries):
     return state_game
 
 def validate_guess(ch: str, state: dict):
-    if ch not in state["guesses"] and isinstance(ch, str) and len(ch) == 1:
+    letters = ["א", "ב", "ג", "ד", "ה", "ו", "ז", "ח", "ט", "י", "כ", "ל", "מ", "נ", "ס", "ע", "פ", "צ", "ק", "ר", "ש", "ת"]
+    if ch not in state["guesses"] and ch in letters and len(ch) == 1:
         return True
     else:
-        return False
+        if ch in state["guesses"]:
+            return False, "You have already tried this letter"
+        elif len(ch) > 1:
+            return False, "Only one letter is required"
+        else:
+            return False, "This is not a letter"
 
 def apply_guess(state: dict, ch: str):
     if ch in state["secret"]:
@@ -35,10 +41,8 @@ def is_lost(state: dict):
     return False
 
 def render_display(state: dict):
-    word = state["secret"]
-    for i in state["secret"]:
-        word.replace(state["secret"][i], "_")
-    state["display"] = word
+    for i in range(len(state["secret"])):
+        state["display"] += "_ "
     return state["display"]
 
 def render_summary(state: dict):
