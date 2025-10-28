@@ -4,7 +4,7 @@ from hungman_project import hungman
 def init_state(secret, max_tries):
     state_game = {"secret": secret,
             "display": '',
-            "guesses": (),
+            "guesses": [],
             "wrong_guesses": 0,
             "max_tries": max_tries
     }
@@ -16,11 +16,12 @@ def validate_guess(ch: str, state: dict):
         return True
     else:
         if ch in state["guesses"]:
-            return False, "You have already tried this letter"
+            print("You have already tried this letter")
         elif len(ch) > 1:
-            return False, "Only one letter is required"
+            print("Only one letter is required")
         else:
-            return False, "This is not a letter"
+            print("This is not a letter")
+        return False
 
 def apply_guess(state: dict, ch: str):
     if ch in state["secret"]:
