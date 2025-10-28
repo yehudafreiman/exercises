@@ -6,7 +6,6 @@ from hungman import io
 def play(words_list, max_tries: int):
     print("game started...")
     state = game.init_state(words.choose_secret_word(words_list), max_tries)
-    max_tries = 10
     print(game.render_display(state))
     while state["secret"] != state["display"] or (len(state["guesses"]) + state["wrong_guesses"]) < state["max_tries"]:
         guess_input = io.prompt_guess()
