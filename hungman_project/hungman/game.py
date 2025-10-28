@@ -26,7 +26,7 @@ def validate_guess(ch: str, state: dict):
 def apply_guess(state: dict, ch: str):
     if ch in state["secret"]:
         for i in range(len(state["display"])):
-            state["display"][i] == ch
+            state["display"][i] += ch
         return True
     else:
         return False
