@@ -14,9 +14,9 @@ def play(words_list, max_tries: int):
             for l in state["secret"]:
                 if guess_input == l:
                     state["display"].replace("_", guess_input)
-                    print("success")
+                    print(l)
                 else:
-                    print("fail")
+                    print("_")
                     state["wrong_guesses"] += 1
         else:
             continue
